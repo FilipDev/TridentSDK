@@ -72,16 +72,7 @@ public final class TridentLogger {
     }
 
     private static Class<?> getCaller() {
-        StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-        StackTraceElement element = elements[4];
-
-        try {
-            return Class.forName(element.getClassName());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return Reflect.getCallerClass(2);
     }
 
     public static org.slf4j.Logger getLogger() {
